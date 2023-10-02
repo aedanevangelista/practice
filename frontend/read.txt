@@ -1,0 +1,20 @@
+Lahat ng frontend file mo dito sa folder na to ah, 
+
+packages, node modules etc dapat dito lang sa loob ng frontend folder
+
+Again:
+    cd ka dito sa directory nato "cd frontend/" tapos dito kana gawa " npm create vite@latest . "
+
+if mag pupush kana, pwede ka gumawa ng another branch mo like 
+
+ - To create new branch " git branch chat-branch "
+ - To switch sa branch " git checkout chat-branch "
+ - To add files in the staging area " git add . "
+ - To commit " git commit -m "<Your Commit>"
+ - To push " git push origin chat-branch "
+
+ Purpose nyan is para di maapektuhan yung forked main repo mo, pero up to you naman kung gusto mo gumawa another branch or not okay lang
+
+
+ then once na push mo na, go to your github repo, tas create ka pull request para mamerge ko
+ 
