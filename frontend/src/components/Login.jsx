@@ -2,7 +2,7 @@ import React from 'react'
 
 const Login = () => {
   return (
-    <main className=' border max-w-5xl mx-auto min-h-screen grid content-center '>
+    <main className='  max-w-5xl mx-auto min-h-screen grid content-center '>
         
         <div className='border rounded-3xl mx-64 px-14 py-24 grid content-center shadow-xl'>
 
