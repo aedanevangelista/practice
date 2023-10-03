@@ -41,26 +41,38 @@ const createUser = async ( request, response ) => {
         }
     )
 
-    const userDb = await Users.findOne( { email } )
+    try {
 
-    if( userDb ) return response.status(409).send(
-        {
-            message: "This email is already registered"
-        }
-    )
+        const userDb = await Users.findOne( { email } )
 
-    const password = hash_password(request.body.password)
+        if( userDb ) return response.status(409).send(
+            {
+                message: "This email is already registered"
+            }
+        )
     
-    const newUser = await Users.create( { fullname, email, password } )
+        const password = hash_password(request.body.password)
+        
+        const newUser = await Users.create( { fullname, email, password } )
+    
+        newUser.save()
+    
+        response.status(201).send(
+            {
+                status: 'OK',
+                message: "Registered Successfully"
+            }
+        )
 
-    newUser.save()
+    } catch ( err ) {
 
-    response.status(201).send(
-        {
-            status: 'OK',
-            message: "Registered Successfully"
-        }
-    )
+        response.status(500).send(
+            {
+                message: "An Unexpected Error Occured"
+            }
+        )
+
+    }
 
 }
 
