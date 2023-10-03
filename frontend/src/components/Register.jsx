@@ -1,5 +1,5 @@
 import { useReducer } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 // Jinshin: Do not touch this
@@ -26,6 +26,8 @@ const Register = () => {
     // Jinshin: Do not touch this
     const [ states, dispatch ] = useReducer(myFunc, { fullname: '', email: '', password: '', confirm_password: '' })
 
+    const navigate = useNavigate()
+
     // Jinshin: Do not touch this
     const signupHandler = async () => {
 
@@ -43,6 +45,12 @@ const Register = () => {
             const response = await request.data
 
             console.log(response)
+
+            if(response.status === 'OK') {
+
+                navigate('/login')
+
+            }
         
 
         } catch (err) {
