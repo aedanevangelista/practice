@@ -31,8 +31,9 @@ const Register = () => {
 
         const values = {
             fullname: states.fullname,
-            email: states.fullname,
-            password: states.fullname,
+            email: states.email,
+            password: states.password,
+            confirm_password: states.confirm_password,
         }
 
         try {
