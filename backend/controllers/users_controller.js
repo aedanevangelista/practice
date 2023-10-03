@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken')
 const Users = require('../models/users_model')
 const { hash_password, compare_passwoord } = require('../util/password_helper')
 
@@ -76,18 +77,71 @@ const createUser = async ( request, response ) => {
 
 }
 
-const loginUser = ( request, response ) => {
+const loginUser = async ( request, response ) => {
 
     const { email, password } = request.body
-    
-    response.status(200).send(
+
+    if( !email, !password) return response.status(400).send(
         {
-            users: {
-                email,
-                password
-            }
+            message: "Fields are required"
         }
     )
+
+    if( !email ) return response.status(400).send(
+        {
+            message: "Email is required"
+        }
+    )
+
+    if( !password ) return response.status(400).send(
+        {
+            message: "Password is required"
+        }
+    )
+
+    try {
+
+        const userDb = await Users.findOne( { email } )
+
+        if( !userDb ) return response.status(409).send(
+            {
+                message: "This user is not exist"
+            }
+        )
+    
+        const isValid = compare_passwoord( password, userDb.password )
+
+        if( !isValid ) return response.status(401).send(
+            {
+                message: " Wrong Credentials"
+            }
+        )
+
+        const values = {
+            id: userDb._id,
+            fullname: userDb.fullname,
+            email: userDb.email
+        }
+
+        const token = jwt.sign( { values }, process.env.SECRET, { expiresIn: '7d' } )
+    
+        response.status(201).send(
+            {
+                status: 'OK',
+                message: "Logged In Successfully",
+                token
+            }
+        )
+
+    } catch ( err ) {
+
+        response.status(500).send(
+            {
+                message: "An Unexpected Error Occured"
+            }
+        )
+
+    }
 
 }
 
