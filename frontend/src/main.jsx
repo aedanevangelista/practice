@@ -2,6 +2,10 @@ import { BrowserRouter } from 'react-router-dom'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
+import axios from 'axios'
+
+// Jisnhin: Don't touch this
+axios.defaults.baseURL = "http://localhost:4000/api"
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   // Jinshin: Do not touch this
