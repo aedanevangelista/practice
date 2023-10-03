@@ -13,7 +13,7 @@ const userRoutes = require('./routes/users_route')
 PORT = process.env.PORT || 4000;
 
 const app = express();
-app.listen(PORT, `Server is running at port ${PORT}`)
+app.listen(PORT, console.log(`Server is running at port ${PORT}`))
 
 
 // Middlewares
