@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Register = () => {
   return (
@@ -72,7 +73,7 @@ const Register = () => {
 
             <span className='flex flex-col justify-center lg:flex-row items-center'>
                 <section className='text-gray-500'>Already a user?</section>
-                <section className='text-sky-500 mx-2'><a href="">Sign in here</a></section>
+                <section className='text-sky-500 mx-2'><Link to="/">Sign in here</Link></section>
             </span>
         </div>
 

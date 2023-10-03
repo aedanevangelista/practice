@@ -1,6 +1,8 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Login = () => {
+
   return (
     <main className='  max-w-5xl mx-auto min-h-screen grid content-center '>
         
@@ -44,7 +46,7 @@ const Login = () => {
 
             <span className='flex flex-col justify-center lg:flex-row items-center'>
                 <section className='text-gray-500'>Don't have an account yet?</section>
-                <section className='text-sky-500 mx-2'><a href="">Sign up here</a></section>
+                <section className='text-sky-500 mx-2'><Link to="/signup">Sign up here</Link></section>
             </span>
         </div>
 
