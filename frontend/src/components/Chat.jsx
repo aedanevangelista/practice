@@ -6,6 +6,9 @@ import Outcoming from './Outcoming'
 const Chat = () => {
   return (
     <>
+
+    //testing 
+    
         <main className='min-h-screen max-w-5xl mx-auto flex justify-center items-center'>
         
         <div className='flex flex-col shadow-md shadow-cyan-600/20 border rounded-3xl w-1/2'>
