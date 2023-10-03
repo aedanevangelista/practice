@@ -1,7 +1,49 @@
-import React from 'react'
+import { useReducer } from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
+
+// Jinshin: Do not touch this
+const myFunc = ( states, action ) => {
+
+    switch ( action.type ) {
+
+        case 'email': return { ...states, email: action.payload }
+
+        case 'password': return { ...states, password: action.payload }
+
+    }
+
+}
 
 const Login = () => {
+
+    // Jinshin: Do not touch this
+    const [ states, dispatch ] = useReducer(myFunc, { email: '', password: '' })
+
+    // Jinshin: Do not touch this
+    const loginHandler = async () => {
+
+        const values = {
+            email: states.email,
+            password: states.password,
+        }
+
+        try {
+
+            const request = await axios.post('/login', values)
+
+            const response = await request.data
+
+            console.log(response)
+        
+
+        } catch (err) {
+
+            console.log( err )
+
+        }
+
+    }
 
   return (
     <main className='  max-w-5xl mx-auto min-h-screen grid content-center '>
@@ -26,7 +68,7 @@ const Login = () => {
                 </svg>
                 </span>
 
-                <input type="Email" placeholder='Email' className='shadow-md shadow-cyan-600/20 pl-24 py-4 my-3 border grow rounded-full'/>
+                <input type="Email" placeholder='Email' className='shadow-md shadow-cyan-600/20 pl-24 py-4 my-3 border grow rounded-full' onChange={e => dispatch( { type: 'email', payload: e.target.value } )} value={states.email} />
             </div>
             
             <div className='flex items-center'>
@@ -37,10 +79,10 @@ const Login = () => {
 
                 </span>
 
-                <input type="Password" placeholder='Password' className='shadow-md shadow-cyan-600/20 pl-24 py-4 my-3 border grow rounded-full'/>
+                <input type="Password" placeholder='Password' className='shadow-md shadow-cyan-600/20 pl-24 py-4 my-3 border grow rounded-full' onChange={e => dispatch( { type: 'password', payload: e.target.value } )} value={states.password} />
             </div>
         
-            <button className='hover:bg-sky-500/80 ease-in-out duration-300 my-4 shadow-md shadow-cyan-600/20 border rounded-full font-semibold mx-auto bg-sky-500 px-3 py-3 text-white text-sm w-1/3'>Sign In</button>
+            <button className='hover:bg-sky-500/80 ease-in-out duration-300 my-4 shadow-md shadow-cyan-600/20 border rounded-full font-semibold mx-auto bg-sky-500 px-3 py-3 text-white text-sm w-1/3' onClick={loginHandler}>Sign In</button>
 
             <hr className='my-6'/>
 

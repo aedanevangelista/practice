@@ -4,18 +4,21 @@ import Login from './components/Login.jsx'
 import Online from './components/Online.jsx'
 import Chat from './components/Chat.jsx'
 
+// Jinshin: Dont' touch this
+import AuthWrapper from './context/AuthContext.js'
 
 function App() {
-
+  
   return (
-    // Jinshin: This is the routes, do not touch this
-    <Routes>
-      <Route path='/' element={<Online/>} exact/>
-      <Route path='/home' element={<Online/>}/>
-      <Route path='/login' element={<Login/>}/>
-      <Route path='/signup' element={<Register/>}/>
-      <Route path='/chats' element={<Chat/>}/>
-    </Routes>
+    <AuthWrapper.Provider value={ { name: 'josh', age: '' } }>
+      <Routes>
+        <Route path='/' element={<Online/>} exact/>
+        <Route path='/home' element={<Online/>}/>
+        <Route path='/login' element={<Login/>}/>
+        <Route path='/signup' element={<Register/>}/>
+        <Route path='/chats' element={<Chat/>}/>
+      </Routes>
+    </AuthWrapper.Provider>
   )
 
 }

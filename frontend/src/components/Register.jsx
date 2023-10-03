@@ -1,9 +1,59 @@
-import React from 'react'
+import { useReducer } from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
+
+// Jinshin: Do not touch this
+const myFunc = ( states, action ) => {
+
+    switch ( action.type ) {
+
+        case 'fullname': return { ...states, fullname: action.payload }
+
+        case 'email': return { ...states, email: action.payload }
+
+        case 'password': return { ...states, password: action.payload }
+
+        case 'confirm_password': return { ...states, confirm_password: action.payload }
+
+        default: throw new Error("Error")
+
+    }
+
+}
 
 const Register = () => {
+
+    // Jinshin: Do not touch this
+    const [ states, dispatch ] = useReducer(myFunc, { fullname: '', email: '', password: '', confirm_password: '' })
+
+    // Jinshin: Do not touch this
+    const signupHandler = async () => {
+
+        const values = {
+            fullname: states.fullname,
+            email: states.fullname,
+            password: states.fullname,
+        }
+
+        try {
+
+            const request = await axios.post('/signup', values)
+
+            const response = await request.data
+
+            console.log(response)
+        
+
+        } catch (err) {
+
+            console.log( err )
+
+        }
+
+    }
+
   return (
-<main className=' border max-w-5xl mx-auto min-h-screen grid content-center '>
+    <main className=' border max-w-5xl mx-auto min-h-screen grid content-center '>
         
         <div className='border rounded-3xl mx-64 px-14 py-24 grid content-center shadow-xl'>
 
@@ -31,7 +81,7 @@ const Register = () => {
 
                 </span>
 
-                <input type="text" placeholder='Full name' className='shadow-md shadow-cyan-600/20 pl-24 py-4 border grow rounded-full'/>
+                <input type="text" placeholder='Full name' className='shadow-md shadow-cyan-600/20 pl-24 py-4 border grow rounded-full' onChange={e => dispatch( { type: 'fullname', payload: e.target.value } )} value={states.fullname} />
 
             </div>
 
@@ -43,7 +93,7 @@ const Register = () => {
                 </svg>
                 </span>
 
-                <input type="Email" placeholder='Email' className='shadow-md shadow-cyan-600/20 pl-24 py-4 border grow rounded-full'/>
+                <input type="Email" placeholder='Email' className='shadow-md shadow-cyan-600/20 pl-24 py-4 border grow rounded-full' onChange={e => dispatch( { type: 'email', payload: e.target.value } )} value={states.email} />
             </div>
             
             <div className='flex items-center my-4'>
@@ -53,7 +103,7 @@ const Register = () => {
                     </svg>
                 </span>
 
-                <input type="Password" placeholder='Password' className='shadow-md shadow-cyan-600/20 pl-24 py-4 border grow rounded-full'/>
+                <input type="Password" placeholder='Password' className='shadow-md shadow-cyan-600/20 pl-24 py-4 border grow rounded-full' onChange={e => dispatch( { type: 'password', payload: e.target.value } )} value={states.password} />
             </div>
         
             <div className='flex items-center my-4'>
@@ -64,16 +114,16 @@ const Register = () => {
 
                 </span>
 
-                <input type="Password" placeholder='Confirm Password' className='shadow-md shadow-cyan-600/20 pl-24 py-4 border grow rounded-full'/>
+                <input type="Password" placeholder='Confirm Password' className='shadow-md shadow-cyan-600/20 pl-24 py-4 border grow rounded-full' onChange={e => dispatch( { type: 'confirm_password', payload: e.target.value } )} value={states.confirm_password} />
             </div>
 
-            <button className='hover:bg-sky-500/80 ease-in-out duration-300 my-4 shadow-md shadow-cyan-600/20 border rounded-full font-semibold mx-auto bg-sky-500 px-3 py-3 text-white text-sm w-1/3'>Sign In</button>
+            <button className='hover:bg-sky-500/80 ease-in-out duration-300 my-4 shadow-md shadow-cyan-600/20 border rounded-full font-semibold mx-auto bg-sky-500 px-3 py-3 text-white text-sm w-1/3' onClick={signupHandler}>Sign In</button>
 
             <hr className='my-6'/>
 
             <span className='flex flex-col justify-center lg:flex-row items-center'>
                 <section className='text-gray-500'>Already a user?</section>
-                <section className='text-sky-500 mx-2'><Link to="/">Sign in here</Link></section>
+                <section className='text-sky-500 mx-2'><Link to="/login">Sign in here</Link></section>
             </span>
         </div>
 
