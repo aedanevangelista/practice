@@ -6,7 +6,9 @@ const createUser = async ( request, response ) => {
 
     const { fullname, email, confirm_password } = request.body
 
-    if( !fullname, !email, !request.body.password ) return response.status(400).send(
+    console.log(fullname, email, request.body.password, confirm_password)
+
+    if( !fullname && !email && !request.body.password && !confirm_password ) return response.status(400).send(
         {
             message: "Fields are required"
         }
@@ -32,7 +34,7 @@ const createUser = async ( request, response ) => {
 
     if( !confirm_password ) return response.status(400).send(
         {
-            message: "Password is required"
+            message: "Confirm password is required"
         }
     )
 
@@ -81,7 +83,7 @@ const loginUser = async ( request, response ) => {
 
     const { email, password } = request.body
 
-    if( !email, !password) return response.status(400).send(
+    if( !email && !password) return response.status(400).send(
         {
             message: "Fields are required"
         }
