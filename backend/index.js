@@ -19,6 +19,11 @@ app.listen(PORT, console.log(`Server is running at port ${PORT}`))
 // Middlewares
 app.use(express.json())
 app.use(formData.union())
+app.use(cors(
+    {
+        origin: process.env.CORS || 'http://localhost:5173'
+    }
+))
 
 // Route's Api
 app.use('/api', userRoutes)
