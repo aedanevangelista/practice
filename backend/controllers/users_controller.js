@@ -6,8 +6,6 @@ const createUser = async ( request, response ) => {
 
     const { fullname, email, confirm_password } = request.body
 
-    console.log(fullname, email, request.body.password, confirm_password)
-
     if( !fullname && !email && !request.body.password && !confirm_password ) return response.status(400).send(
         {
             message: "Fields are required"
