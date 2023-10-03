@@ -69,7 +69,7 @@ const createUser = async ( request, response ) => {
 
         response.status(500).send(
             {
-                message: "An Unexpected Error Occured"
+                message: "An Unexpected Error Occured" + err
             }
         )
 
@@ -103,7 +103,7 @@ const loginUser = async ( request, response ) => {
 
         const userDb = await Users.findOne( { email } )
 
-        if( !userDb ) return response.status(409).send(
+        if( !userDb ) return response.status(404).send(
             {
                 message: "This user is not exist"
             }
@@ -111,7 +111,7 @@ const loginUser = async ( request, response ) => {
     
         const isValid = compare_passwoord( password, userDb.password )
 
-        if( !isValid ) return response.status(401).send(
+        if( !isValid ) return response.status(409).send(
             {
                 message: " Wrong Credentials"
             }
@@ -137,7 +137,7 @@ const loginUser = async ( request, response ) => {
 
         response.status(500).send(
             {
-                message: "An Unexpected Error Occured"
+                message: "An Unexpected Error Occured" + err
             }
         )
 
