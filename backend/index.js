@@ -7,7 +7,7 @@ const cors = require('cors')
 require('./database/database')
 
 // Routers
-
+const userRoutes = require('./routes/users_route')
 
 // Server Instance
 PORT = process.env.PORT || 4000;
@@ -21,4 +21,4 @@ app.use(express.json())
 app.use(formData.union())
 
 // Route's Api
-app.use()
+app.use('/api', userRoutes)
