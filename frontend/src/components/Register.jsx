@@ -47,11 +47,13 @@ const Register = () => {
 
         } catch (err) {
 
+            console.log(err)
             if( err.response.status ) {
 
                 alert( err.response.data.message )
 
             }
+
 
         }
 

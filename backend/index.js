@@ -10,7 +10,7 @@ require('./database/database')
 const userRoutes = require('./routes/users_route')
 
 // Server Instance
-PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 4000;
 
 const app = express();
 app.listen(PORT, console.log(`Server is running at port ${PORT}`))
@@ -21,7 +21,7 @@ app.use(express.json())
 app.use(formData.union())
 app.use(cors(
     {
-        origin: process.env.CORS || 'http://localhost:5173'
+        origin: process.env.CORS
     }
 ))
 

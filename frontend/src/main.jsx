@@ -5,7 +5,7 @@ import './index.css'
 import axios from 'axios'
 
 // Jisnhin: Don't touch this
-axios.defaults.baseURL = "https://chat-app-api-3nwo.onrender.com/api" || "http://localhost:4000/api"
+axios.defaults.baseURL = "https://chat-app-api-3nwo.onrender.com/api"
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   // Jinshin: Do not touch this
